@@ -42,7 +42,6 @@ function Todolist(props: PropsType) {
         return (
             <div key={t.id} className={props.filter !== "completed" && t.isDone ? "is-done" : ""}>
                 <Checkbox color={"primary"} checked={t.isDone} onChange={onStatusChangeHandler}/>
-                {/*<input type="checkbox" checked={t.isDone} onChange={onStatusChangeHandler}/>*/}
                 <EditableSpan title={t.title} saveTitle={onTitleChangeHandler}/>
                 <button onClick={() => {
                     props.removeTask(t.id, props.id)
@@ -71,7 +70,6 @@ function Todolist(props: PropsType) {
     return (
         <div>
             <h3>{props.title}
-                {/*<button onClick={onRemoveTodoList}>x</button>*/}
                 <IconButton onClick={onRemoveTodoList}>
                     <Delete/>
                 </IconButton>

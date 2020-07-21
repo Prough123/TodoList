@@ -12,7 +12,7 @@ export type TaskType = {
     title: string,
 }
 
-type TodoListType = {
+export type TodoListType = {
     id: string,
     title: string,
     filter: FilterValueType,
@@ -118,6 +118,14 @@ function App() {
         }
     }
 
+    function changeTodoListTitle(newTitle: string, todoListID: string) {
+        let todoList = todoLists.find(tl => tl.id === todoListID);
+        if(todoList){
+            todoList.title = newTitle
+            setTodoLists([...todoLists])
+        }
+    }
+
 
     return (
         <div className="App">
@@ -152,7 +160,7 @@ function App() {
                         }
 
 
-                        return (<Grid item  key={tl.id}>
+                        return (<Grid item key={tl.id}>
                                 <Paper style={{padding: "10px"}}>
                                     <Todolist
                                         id={tl.id}
