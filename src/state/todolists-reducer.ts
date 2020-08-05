@@ -1,5 +1,6 @@
 import {TodoListType, FilterValueType} from "../App";
 import {v1} from "uuid";
+import {act} from "react-dom/test-utils";
 
 
 export type RemoveTodolistActionType = {
@@ -29,6 +30,7 @@ export type ChangeTodolistFilterActionType = {
 }
 
 
+
 let initialState: Array<TodoListType> = []
 
 
@@ -51,12 +53,13 @@ export const todoListsReducer = (state: Array<TodoListType> = initialState, acti
             }
             return [...state, newTodoList]
         case 'CHANGE-TODOLIST-TITLE':
-            const todoList = state.find(tl => tl.id === action.id)
-            if (todoList) {
-                todoList.title = action.title;
-                return [...state]
-            }
-            return state
+            return state.map(todo => {
+                if (todo.id !== action.id){
+                    return todo
+                } else {
+                    return  {...todo, title: action.title}
+                }
+            })
         case 'CHANGE-TODOLIST-FILTER':
             return state.map(tl => {
                 if (tl.id === action.id) {

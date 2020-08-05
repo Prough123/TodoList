@@ -124,18 +124,18 @@ function AppWithReducer() {
 
                         return (<Grid item key={tl.id}>
                                 <Paper style={{padding: "10px"}}>
-                                    <Todolist
-                                        id={tl.id}
-                                        title={tl.title}
-                                        tasks={tasksForTodoList}
-                                        removeTask={removeTask}
-                                        changeFilter={changeFilter}
-                                        addTask={addTask}
-                                        changeStatus={changeStatus}
-                                        filter={tl.filter}
-                                        removeTodoList={removeTodoList}
-                                        changeTaskTitle={changeTaskTitle}
-                                    />
+                                    {/*<Todolist*/}
+                                    {/*    id={tl.id}*/}
+                                    {/*    title={tl.title}*/}
+                                    {/*    tasks={tasksForTodoList}*/}
+                                    {/*    removeTask={removeTask}*/}
+                                    {/*    changeFilter={changeFilter}*/}
+                                    {/*    addTask={addTask}*/}
+                                    {/*    changeStatus={changeStatus}*/}
+                                    {/*    filter={tl.filter}*/}
+                                    {/*    removeTodoList={removeTodoList}*/}
+                                    {/*    changeTaskTitle={changeTaskTitle}*/}
+                                    {/*/>*/}
                                 </Paper>
                             </Grid>
                         )
