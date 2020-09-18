@@ -11,18 +11,16 @@ export const GetTodolists = () => {
 
     const [state, setState] = useState<any>(null)
 
-    const getTodolist = () => {
-        todolistAPI.getTodoLists().then((res) => {
-            const data = res.data
-            setState(data)
-        })
-    }
+
+    todolistAPI.getTodoLists().then((res) => {
+        const data = res.data
+        setState(data)
+    })
+
     return <div> {JSON.stringify(state)}
-        <div>
-            <button onClick={getTodolist}>get todolist</button>
-        </div>
     </div>
 }
+
 export const CreateTodolist = () => {
     const [state, setState] = useState<any>(null)
     const [title, setTitle] = useState<string>('')
@@ -122,28 +120,60 @@ export const CreateTodoListTask = () => {
         <button onClick={createTodoListTask}>create task</button>
     </div>
 }
-//
-// export const UpdateTodoListTask =() => {
-//     const [state, setState] = useState<any>(null)
-//     useEffect(()=>{
-//         const todoId = '3234c549-f5c9-45f0-b76c-02a1fdd72069';
-//         const taskId = 'a44a03e1-2947-43e2-9296-88405f9990d9';
-//         const title = 'Sergey Krytoi';
-//         const description = 'Жил был даун Василий';
-//         const completed = true;
-//         const status = 1;
-//         const priority = 100;
-//         const startDate = '2020-05-13';
-//         const deadline = '2020-06-13';
-//         todolistAPI.updateTask(todoId,taskId,title,description,completed,status,priority,startDate,deadline)
-//             .then((res) => {
-//                 setState(res.data.data)
-//             })
-//             .catch((error)=> {
-//                 console.log(error)
-//             })
-//     },[])
-//     return <div>{JSON.stringify(state)}</div>
-// }
+
+export const UpdateTodoListTask = () => {
+    const [state, setState] = useState<any>(null)
+
+    const [taskTitle, setTaskTitle] = useState<string>('')
+    const [taskDescr, setTaskDescr] = useState<string>('')
+    const [taskStatus, setTaskStatus] = useState<number>(1)
+    const [taskPriority, setTaskPriority] = useState<number>(1)
+    const [taskStartDate, setTaskStartDate] = useState<string>('')
+    const [taskDeadLine, setTaskDeadLine] = useState<string>('')
+
+    const [taskId, setTaskId] = useState<string>('')
+    const [todoId, setTodoId] = useState<string>('')
+
+    const updateTodoListTask = () => {
+        todolistAPI.updateTask(todoId, taskId, {
+            deadLine: null,
+            description: taskDescr,
+            priority: taskPriority,
+            startDate: null,
+            status: taskStatus,
+            title: taskTitle
+
+        })
+            .then((res) => {
+                setState(res.data.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    return <div>{JSON.stringify(state)}
+        <div>
+
+            <input type="text" placeholder={'taskID'} value={taskId}
+                   onChange={(e) => setTaskId(e.currentTarget.value)}/>
+            <input type="text" placeholder={'todoId'} value={todoId}
+                   onChange={(e) => setTodoId(e.currentTarget.value)}/>
+            <input type="text" placeholder={'taskTitle'} value={taskTitle}
+                   onChange={(e) => setTaskTitle(e.currentTarget.value)}/>
+            <input type="text" placeholder={'taskDescr'} value={taskDescr}
+                   onChange={(e) => setTaskDescr(e.currentTarget.value)}/>
+            <input type="number" placeholder={'taskStatus'} value={taskStatus}
+                   onChange={(e) => setTaskStatus(+e.currentTarget.value)}/>
+            <input type="number" placeholder={'taskPriority'} value={taskPriority}
+                   onChange={(e) => setTaskPriority(+e.currentTarget.value)}/>
+            <input type="text" placeholder={'taskstartDate'} value={taskStartDate}
+                   onChange={(e) => setTaskStartDate(e.currentTarget.value)}/>
+            <input type="text" placeholder={'taskDeadLine'} value={taskDeadLine}
+                   onChange={(e) => setTaskDeadLine(e.currentTarget.value)}/>
+            <button onClick={updateTodoListTask}></button>
+        </div>
+    </div>
+}
 
 

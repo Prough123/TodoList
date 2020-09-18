@@ -54,6 +54,15 @@ type TaskType = {
     addedDate: string
 }
 
+type UpdateTaskModelType = {
+    title: string
+    description: string
+    status: number
+    priority: number
+    startDate: null
+    deadLine: null
+}
+
 export const todolistAPI = {
     getTodoLists() {
         return instance.get<Array<TodoType>>('todo-lists',)
@@ -73,9 +82,8 @@ export const todolistAPI = {
     createTask(todoId:string, title:string){
         return instance.post<CommonResponseType<TaskType>>(`todo-lists/${todoId}/tasks`, {title})
     },
-    // updateTask(todoId:string,taskId:string, title:string, description:string, completed:boolean
-    // , status:number,priority:number, startDate:string, deadLine:string){
-    //     return instance.put<CommonResponseType>(`todo-lists/${todoId}/tasks/${taskId}`, {title, description, completed, status, priority, startDate, deadLine})
-    // }
+    updateTask(todoId:string,taskId:string, model: UpdateTaskModelType){
+        return instance.put<CommonResponseType>(`todo-lists/${todoId}/tasks/${taskId}`, model)
+    }
 
 }
