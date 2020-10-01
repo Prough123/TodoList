@@ -7,7 +7,7 @@ import {Task} from './Task'
 import {TaskStatuses, TaskType} from './api/todolists-api'
 import {FilterValuesType} from './state/todolists-reducer'
 import {useDispatch} from "react-redux";
-import {fetchTasksTC, removeTasksTC} from "./state/tasks-reducer";
+import {fetchTasksTC} from "./state/tasks-reducer";
 
 type PropsType = {
     id: string
