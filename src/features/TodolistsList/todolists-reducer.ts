@@ -8,6 +8,7 @@ import {
     RequestStatusType
 } from "../../app/app-reducer";
 import {RequestStatusesCode} from "./tasks-reducer";
+import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 
 const initialState: Array<TodolistDomainType> = []
 
@@ -83,15 +84,16 @@ export const addTodolistTC = (title: string) => {
             .then((res) => {
                 if (res.data.resultCode === RequestStatusesCode.success) {
                     dispatch(addTodolistAC(res.data.data.item))
-                } else if (res.data.resultCode === RequestStatusesCode.error) {
-                    if (res.data.messages.length) {
-                        dispatch(setAppErrorAC(res.data.messages[0]))
-                    } else {
-                        dispatch(setAppErrorAC('ERROR'))
-                    }
-                }
+
+                } else  handleServerAppError(res.data, dispatch)
+            })
+            .catch((err) => {
+                handleServerNetworkError(err.message, dispatch)
+            })
+            .finally(() => {
                 dispatch(setAppStatusAC('succeeded'))
             })
+
     }
 }
 export const changeTodolistTitleTC = (id: string, title: string) => {

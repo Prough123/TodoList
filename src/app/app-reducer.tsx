@@ -1,5 +1,3 @@
-import {Simulate} from "react-dom/test-utils";
-
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 
