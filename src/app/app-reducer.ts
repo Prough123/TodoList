@@ -40,7 +40,6 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
             dispatch(setIsLoggedInAC(true));
         } else {
         }
-
         dispatch(setIsInitializedAC())
     })
 }
