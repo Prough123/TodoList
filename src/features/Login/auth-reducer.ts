@@ -4,7 +4,6 @@ import {authAPI, FieldErrorType, LoginParamsType} from '../../api/todolists-api'
 import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils'
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
-import thunk from "redux-thunk";
 
 
 export const loginTC = createAsyncThunk<undefined, LoginParamsType, {
