@@ -5,7 +5,7 @@ import {Button, IconButton} from '@material-ui/core'
 import {Delete} from '@material-ui/icons'
 import {Task} from './Task/Task'
 import {TaskStatuses, TaskType} from '../../../api/todolists-api'
-import {FilterValuesType, TodolistDomainType} from '../todolists-reducer'
+import {TodolistDomainType} from '../todolists-reducer'
 import {useDispatch} from 'react-redux'
 import {useActions} from "../../../app/store";
 import {tasksActions, todolistsActions} from "../index";
@@ -37,13 +37,13 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
 
 
 
-    const dispatch = useDispatch()
     useEffect(() => {
         if (demo) {
             return
         }
-        const thunk = fetchTasks(props.todolist.id)
-        dispatch(thunk)
+
+        fetchTasks(props.todolist.id)
+
     }, [])
 
     const addTaskCallback = useCallback((title: string) => {

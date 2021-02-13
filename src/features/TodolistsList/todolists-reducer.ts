@@ -4,7 +4,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {handleServerNetworkError} from "../../utils/error-utils";
 
 
-export const fetchTodolists = createAsyncThunk("todolists/fetchTodolists", async (arg, {dispatch, rejectWithValue}) => {
+const fetchTodolists = createAsyncThunk("todolists/fetchTodolists", async (arg, {dispatch, rejectWithValue}) => {
     dispatch(setAppStatusAC({status: 'loading'}))
     const res = await todolistsAPI.getTodolists()
     try {
@@ -15,7 +15,7 @@ export const fetchTodolists = createAsyncThunk("todolists/fetchTodolists", async
         return rejectWithValue(null)
     }
 })
-export const removeTodolistTC = createAsyncThunk("todolists/removeTodolist", async (todolistId: string, {
+const removeTodolistTC = createAsyncThunk("todolists/removeTodolist", async (todolistId: string, {
     dispatch,
     rejectWithValue
 }) => {
@@ -28,13 +28,13 @@ export const removeTodolistTC = createAsyncThunk("todolists/removeTodolist", asy
     dispatch(setAppStatusAC({status: 'succeeded'}))
     return {id: todolistId}
 })
-export const addTodolistTC = createAsyncThunk("todolists/addTodolist", async (title: string, {dispatch}) => {
+const addTodolistTC = createAsyncThunk("todolists/addTodolist", async (title: string, {dispatch}) => {
     dispatch(setAppStatusAC({status: 'loading'}))
     const res = await todolistsAPI.createTodolist(title)
     dispatch(setAppStatusAC({status: 'succeeded'}))
     return {todolist: res.data.data.item}
 })
-export const changeTodolistTitleTC = createAsyncThunk("todolists/changeTodolistTitle", async (param: { id: string, title: string }, {dispatch}) => {
+const changeTodolistTitleTC = createAsyncThunk("todolists/changeTodolistTitle", async (param: { id: string, title: string }, {dispatch}) => {
     const res = await todolistsAPI.updateTodolist(param.id, param.title)
     return param
 })

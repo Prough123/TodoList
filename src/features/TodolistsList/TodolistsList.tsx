@@ -17,7 +17,7 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     const todolists = useSelector(selectTodolists)
     const tasks = useSelector(selectTasks)
     const isLoggedIn = useSelector(selectIsLoggedIn)
-    const {addTodolist,fetchTodolists} = useActions(todolistsActions)
+    const {addTodolistTC,fetchTodolists} = useActions(todolistsActions)
 
     useEffect(() => {
         if (demo || !isLoggedIn) {
@@ -36,7 +36,7 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
 
     return <>
         <Grid container style={{padding: '20px'}}>
-            <AddItemForm addItem={addTodolist}/>
+            <AddItemForm addItem={addTodolistTC}/>
         </Grid>
         <Grid container spacing={3}>
             {
