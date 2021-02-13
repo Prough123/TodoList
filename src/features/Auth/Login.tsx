@@ -1,10 +1,11 @@
 import React from 'react'
-import {Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Button, Grid} from '@material-ui/core'
+import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField} from '@material-ui/core'
 import {FormikHelpers, useFormik} from 'formik'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {loginTC} from './auth-reducer'
-import {AppDispatchType, AppRootStateType, useAppDispatch} from '../../app/store'
+import {useAppDispatch} from '../../app/store'
 import {Redirect} from 'react-router-dom'
+import {selectIsLoggedIn} from "./selectors";
 
 type FormValuesType = {
     email: string,
@@ -15,7 +16,7 @@ type FormValuesType = {
 export const Login = () => {
     const dispatch = useAppDispatch()
 
-    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn);
+    const isLoggedIn = useSelector(selectIsLoggedIn);
 
     const formik = useFormik({
         validate: (values) => {
